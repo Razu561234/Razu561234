@@ -1,0 +1,22 @@
+import phonenumbers
+from phonenumbers import geocoder, carrier
+
+print("╔══════════════════════════════╗")
+print("║       CYBER SR TOOLS        ║")
+print("║      NUMBER INFORMATION      ║")
+print("╚══════════════════════════════╝")
+
+number = input("\nEnter number (+880...): ")
+
+try:
+    p = phonenumbers.parse(number, None)
+
+    print("\n[+] Country :", geocoder.description_for_number(p, "en"))
+    print("[+] Carrier :", carrier.name_for_number(p, "en"))
+    print("[+] Valid   :", phonenumbers.is_valid_number(p))
+    print("[+] Possible:", phonenumbers.is_possible_number(p))
+    print("[+] Country Code :", p.country_code)
+    print("[+] National Number :", p.national_number)
+
+except Exception:
+    print("\n[!] Invalid number format.")
