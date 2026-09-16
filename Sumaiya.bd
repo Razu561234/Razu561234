@@ -1,0 +1,36 @@
+
+import os
+import subprocess
+
+os.system("clear")
+
+print("""
+╔════════════════════════════════╗
+║          CYBER SR              ║
+║       YOUTUBE DOWNLOADER       ║
+╠════════════════════════════════╣
+║  Paste URL → Download Video    ║
+╚════════════════════════════════╝
+""")
+
+url = input("YouTube Link: ").strip()
+
+if not url:
+    print("❌ No URL entered!")
+    exit()
+
+print("\n⏳ Downloading...\n")
+
+result = subprocess.run([
+    "yt-dlp",
+    "-f", "bv*+ba/b",
+    "--merge-output-format", "mp4",
+    "-o", "/sdcard/Download/%(title)s.%(ext)s",
+    url
+])
+
+if result.returncode == 0:
+    print("\n✅ Download Complete!")
+    print("📁 Saved: /sdcard/Download/")
+else:
+    print("\n❌ Download failed.")
